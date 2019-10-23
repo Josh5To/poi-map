@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import Map from './Map.js'
 import { Row, Col } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -57,7 +58,7 @@ export default class Base extends Component {
                     <DemoBox id={21}> col-21 </DemoBox>
                 </Col>
                 <Col span={22}>
-                    <DemoBox id={"main"}> col-main </DemoBox>
+                    <DemoBox id={"main"}> <Map /> </DemoBox>
                 </Col>
 
             </Row>
