@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 
 const DemoBox = props => <p className={`height-${props.value} id-${props.id}`}>{props.children}</p>;
 
-export default class Nav extends Component {
+export default class Base extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -13,7 +13,7 @@ export default class Nav extends Component {
     
     render() {
         return(
-        <div className="nav">
+        <div className="base">
             <Row type="flex" justify="center" align="top">
                 <Col span={2}>
                     <DemoBox value={150} id={1}>col-1</DemoBox>
