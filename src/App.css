@@ -1,11 +1,26 @@
 .App {
   text-align: center;
 }
-
+/*Main div in base.js*/
+.id-0 {
+  margin-bottom: 0;
+}
 .id-1 {
   height: 10vh;
+  margin-bottom: 0em;
 }
 
 .id-21 {
   height: 90vh;
+}
+
+.PopCard {
+  position: absolute;
+  right: 0;
+}
+
+/*Color for sidebar*/
+.ant-menu-dark, .ant-menu-dark, .ant-menu-sub, .ant-layout-sider,.ant-layout-sider-trigger {
+
+  background: #191a1a !important;
 }

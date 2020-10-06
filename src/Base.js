@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Map from './Map.js'
-import { Row, Col } from 'antd';
+import { Row, Col, Button, Icon } from 'antd';
 import 'antd/dist/antd.css';
 
 const DemoBox = props => <p className={`height-${props.value} id-${props.id}`}>{props.children}</p>;
@@ -9,9 +9,31 @@ const DemoBox = props => <p className={`height-${props.value} id-${props.id}`}>{
 export default class Base extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            expand: 1,
+            map: 23,
+            mapLarge: 23,
+            mapSmall: 19,
+            whichMap: "large"
+        };
     }
     
+    expandRight = () => {
+        this.setState({
+            expand: 5,
+            map: this.state.mapSmall,
+            whichMap: "small"
+        });
+    }
+
+    closeExpand = () => {
+        this.setState({
+            expand: 1,
+            map: this.state.mapLarge,
+            whichMap: "large"
+        });
+    }
+
     render() {
         return(
         <div className="base">
@@ -54,11 +76,16 @@ export default class Base extends Component {
                 </Col>
             </Row>
             <Row type="flex" justify="start">
-                <Col span={2}>
-                    <DemoBox id={21}> col-21 </DemoBox>
-                </Col>
-                <Col span={22}>
-                    <DemoBox id={"main"}> <Map /> </DemoBox>
+                <Col span={24}>
+                    <DemoBox value={100} id={0}> 
+                    <Map 
+                        openExp={this.expandRight}
+                        closeExp={this.closeExpand}
+                        menuEx={this.state.expand}
+                        mapSize={this.state.map} 
+                        whichMap={this.state.whichMap}
+                         /> 
+                    </DemoBox>
                 </Col>
 
             </Row>
