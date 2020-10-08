@@ -1,2 +1,0 @@
-export const GOOG_KEY = "AIzaSyD_gR_gv_DfphGqSHoJgAXMKlYq91dOc0o"
-export const TOKEN_MAP = "pk.eyJ1Ijoiam9zaDV0byIsImEiOiJjanowYmFpa2EwYXE1M2hxZ2c4cXltbjgyIn0.Nkx7iWv8YwpjfHnW4OOpnA"
