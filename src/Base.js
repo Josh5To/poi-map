@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {HeatMapOutlined} from '@ant-design/icons'
 import './App.css';
-import Map from './Map.js'
+import SliderMap from './Slider.js'
 import { Row, Col, Button, Icon } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -75,19 +75,8 @@ export default class Base extends Component {
                     
                 </Col>
             </Row>
-            <Row type="flex" justify="start">
-                <Col span={24}>
-                    <DemoBox value={100} id={0}> 
-                    <Map 
-                        openExp={this.expandRight}
-                        closeExp={this.closeExpand}
-                        menuEx={this.state.expand}
-                        mapSize={this.state.map} 
-                        whichMap={this.state.whichMap}
-                         /> 
-                    </DemoBox>
-                </Col>
-
+            <Row type="flex" justify="center" align="top">
+                <SliderMap />
             </Row>
         </div>
         );
