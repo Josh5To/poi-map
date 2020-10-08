@@ -14,13 +14,25 @@
   height: 90vh;
 }
 
+.midCol {
+  font-size: 3vw;
+  color: #1890ff;
+}
+
 .PopCard {
   position: absolute;
   right: 0;
 }
 
-/*Color for sidebar*/
-.ant-menu-dark, .ant-menu-dark, .ant-menu-sub, .ant-layout-sider,.ant-layout-sider-trigger {
+p {
+  margin-bottom: 0em !important;
+}
 
+/*Color for sidebar
+.ant-menu-dark, .ant-menu-dark, .ant-menu-sub, .ant-layout-sider,.ant-layout-sider-trigger {
   background: #191a1a !important;
+}*/
+
+.ant-menu-dark, .ant-menu-dark, .ant-menu-sub, .ant-layout-sider,.ant-layout-sider-trigger {
+  background: #fff !important;
 }

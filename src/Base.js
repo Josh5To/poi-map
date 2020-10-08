@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {HeatMapOutlined} from '@ant-design/icons'
 import './App.css';
 import Map from './Map.js'
 import { Row, Col, Button, Icon } from 'antd';
@@ -38,41 +39,40 @@ export default class Base extends Component {
         return(
         <div className="base">
             <Row type="flex" justify="center" align="top">
-                <Col span={2}>
-                    <DemoBox value={150} id={1}>col-1</DemoBox>
+                <Col className="test" span={2}>
+                    
                 </Col>
                 <Col span={2}>
-                    <DemoBox value={100} id={2}>col-2</DemoBox>
+                    
                 </Col>
                 <Col span={2}>
-                    <DemoBox value={100} id={3}>col-3</DemoBox>
+                    
                 </Col>
                 <Col span={2}>
-                    <DemoBox value={100} id={4}>col-4</DemoBox>
+                    
                 </Col>
                 <Col span={2}>
-                    <DemoBox value={100} id={5}>col-5</DemoBox>
+                    
+                </Col>
+                <Col span={4}>
+                    <p className="midCol">
+                    <HeatMapOutlined />
+                    </p>
                 </Col>
                 <Col span={2}>
-                    <DemoBox value={100} id={6}>col-6</DemoBox>
+                    
                 </Col>
                 <Col span={2}>
-                    <DemoBox value={100} id={7}>col-7</DemoBox>
+                    
                 </Col>
                 <Col span={2}>
-                    <DemoBox value={100}id={8}>col-8</DemoBox>
+                    
                 </Col>
                 <Col span={2}>
-                    <DemoBox value={100} id={9}>col-9</DemoBox>
+                    
                 </Col>
                 <Col span={2}>
-                    <DemoBox value={100} id={10}>col-10</DemoBox>
-                </Col>
-                <Col span={2}>
-                    <DemoBox value={100} id={11}>col-11</DemoBox>
-                </Col>
-                <Col span={2}>
-                    <DemoBox value={100} id={12}>col-12</DemoBox>
+                    
                 </Col>
             </Row>
             <Row type="flex" justify="start">

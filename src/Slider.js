@@ -10,11 +10,12 @@ import AddressField from './AddressField.js'
 import 'antd/dist/antd.css';
 import MapGL, {Marker, NavigationControl, FullscreenControl, FlyToInterpolator} from 'react-map-gl';
 import Pin from './pin';
+import { TOKEN_MAP } from './secret.js'
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 //Add mapbox api token here
-//const TOKEN;
+const TOKEN = TOKEN_MAP;
 
 export default class SliderMap extends Component {
   constructor(props) {
@@ -164,7 +165,7 @@ export default class SliderMap extends Component {
       <Layout style={{ minHeight: '90vh' }}>
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
           <div className="logo" />
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+          <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1" style={{marginTop: 0}}>
               <PieChartOutlined />
               <span>Option 1</span>
@@ -185,7 +186,7 @@ export default class SliderMap extends Component {
                 {...viewport}
                 width="100%"
                 height="90vh"
-                mapStyle="mapbox://styles/mapbox/dark-v9"
+                mapStyle="mapbox://styles/mapbox/streets-v11"
                 onViewportChange={this._onViewportChange}
                 mapboxApiAccessToken={TOKEN}
             >

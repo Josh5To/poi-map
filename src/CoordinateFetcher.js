@@ -1,7 +1,8 @@
 import { Component } from "react";
+import { GOOG_KEY } from './secret.js'
 
 //add Google GEO api key here
-//const API_KEY;
+const API_KEY = GOOG_KEY
 const GOOGLE_API = "https://maps.google.com/maps/api/geocode/json";
 
     //Gets lat lang from address string,
