@@ -1,12 +1,14 @@
 /* eslint-disable import/first */
 import React, {Component} from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import {PieChartOutlined, DesktopOutlined, FileOutlined} from '@ant-design/icons'
+import { BranchesOutlined, DesktopOutlined, FileOutlined } from '@ant-design/icons'
 import './App.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import PopCard from './PopCard.js'
+import ResultsCard from './ResultsCard'
 import ResultsArea from './ResultsArea.js'
 import AddressField from './AddressField.js'
+import getPlaces from './GetPlaces.js'
 import 'antd/dist/antd.css';
 import MapGL, {Marker, NavigationControl, FullscreenControl, FlyToInterpolator} from 'react-map-gl';
 import Pin from './pin';
@@ -59,6 +61,7 @@ export default class SliderMap extends Component {
 
   
 
+  //Plots center point calculated from current locations
   plotCenter = (centx, centy) => {
     if(centx !== undefined) {
       
@@ -80,6 +83,7 @@ export default class SliderMap extends Component {
     }
   }
 
+  //Calculates center point
   _centerPoint = () => {
     var x = 0;
         var y = 0;
@@ -100,6 +104,7 @@ export default class SliderMap extends Component {
         var xx = (x/z);
         var yy = (y/z);
         this.plotCenter(xx, yy);
+        getPlaces(xx, yy);
   }
 
   //Should recieve object of lat/long coordinates and add them to an array of objects
@@ -161,13 +166,14 @@ export default class SliderMap extends Component {
       <Pin size={20} fill={'#11c888'} />
       </Marker>
     );
+
     return (
-      <Layout style={{ minHeight: '90vh' }}>
+      <Layout style={{ minHeight: '90vh', zindex: '1' }}>
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
           <div className="logo" />
           <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1" style={{marginTop: 0}}>
-              <PieChartOutlined />
+              <BranchesOutlined />
               <span>Option 1</span>
             </Menu.Item>
             <Menu.Item key="2">
@@ -197,7 +203,8 @@ export default class SliderMap extends Component {
             addLoc={this._addLocationToArray}
             centerPoint={this._centerPoint}
           />
-          
+          <ResultsCard
+          />
         </Layout>
       </Layout>
     );

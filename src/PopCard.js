@@ -53,26 +53,9 @@ export default class PopCard extends Component {
         }
     }
 
+    //Handles save button click
     handleClick = () => {
-        var x = 0;
-        var y = 0;
-        var z = 0;
-        this.state.addresses.map((cur, ind) =>
-            {
-                if(cur.lng !== undefined) {
-                    x += cur.lat;
-                    y += cur.lng;
-                    z++;
-                }
-                else {
-                    throw Error(`No location entered in field ${ind}`);
-                }
-            }
-        );
-        console.log(x, y, z);
-        var xx = (x/z);
-        var yy = (y/z);
-        this.props.centerPoint(xx, yy);
+        this.props.centerPoint();
     }
 
 
@@ -88,7 +71,7 @@ export default class PopCard extends Component {
             <div className="PopCard">
                 <Card title="Points of Interest:" extra={<a href="#">More</a>} style={{ width: 300 }}>
                     {addList}
-                    <Button onClick={this.handleClick}>Save</Button>
+                    <Button onClick={this.props.centerPoint}>Save</Button>
                 </Card>
             </div>
     );

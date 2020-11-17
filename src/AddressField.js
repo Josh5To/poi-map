@@ -9,7 +9,7 @@ export default class AddressField extends PureComponent {
         this.state = {input: ''};
 
     }
-
+    //Keeps input updated
     handleChange = (e) => {
         this.setState({
             input: e.target.value
@@ -17,8 +17,14 @@ export default class AddressField extends PureComponent {
     }
 
     //Sends text value to array
-    handleClick = () => {
-        //this.props.sendToGeo(this.state.input, this.props.idVal);
+    handleClick = async (value) => {
+        //Add address can throw a couple errors, mainly typeerrors from broken coordinates, this waits for correct callback from calcCord
+        try {
+            await this.props.addAddress(value, this.props.id)
+        }
+        catch (e) {
+            console.log(e)
+        }
     }
 
     render() {
@@ -34,7 +40,7 @@ export default class AddressField extends PureComponent {
                             size="large"
                             onChange={this.handleChange}
                             //Sends to PopCard
-                            onSearch={value => this.props.addAddress(value, this.props.id)}
+                            onSearch={this.handleClick}
                         />
                     </Row>
                 </div>

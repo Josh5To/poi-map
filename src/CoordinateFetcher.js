@@ -19,7 +19,6 @@ const GOOGLE_API = "https://maps.google.com/maps/api/geocode/json";
         });
 
         if (json.status === "OK") {
-            console.log(json.results[0].geometry.location.lat);
             res = json.results[0].geometry.location;
             return res;
         }
@@ -28,7 +27,6 @@ const GOOGLE_API = "https://maps.google.com/maps/api/geocode/json";
     async function urlBuilder(city) {
         var cit = city;
         let url = `${GOOGLE_API}?address=${encodeURIComponent(cit)}&key=${API_KEY}`;
-        console.log(url)
         return getGeodata(url);
     
     }

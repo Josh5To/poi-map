@@ -19,9 +19,46 @@
   color: #1890ff;
 }
 
+.ant-layout-sider {
+  z-index: 1;
+}
+
 .PopCard {
   position: absolute;
   right: 0;
+}
+
+.address {
+  margin-bottom: 10px;
+}
+
+.resWrap {
+  left: 0;
+  position: absolute;
+}
+
+.resCard {
+  width: 21vw;
+  z-index: 0;
+  overflow-y: scroll;
+  overflow-x: visible;
+  height: 56vh;
+  transition: .5s ease;
+}
+
+.trigger {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  color: gray;
+  background-color: white;
+  z-index: 1;
+  right: 0;
+  margin-right: -30px;
+  height: 7vh;
+  width: 30px;
+  margin-top: 1%;
 }
 
 p {

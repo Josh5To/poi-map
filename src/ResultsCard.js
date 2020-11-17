@@ -15,8 +15,8 @@ export default class ResultsCard extends Component {
         super(props);
         this.state = {
             slide: {
-                marginLeft: '5.5vw',
-                open: true
+                marginLeft: '-15.5vw',
+                open: false
             }
 
         };
