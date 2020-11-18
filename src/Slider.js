@@ -6,8 +6,6 @@ import './App.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import PopCard from './PopCard.js'
 import ResultsCard from './ResultsCard'
-import ResultsArea from './ResultsArea.js'
-import AddressField from './AddressField.js'
 import getPlaces from './GetPlaces.js'
 import 'antd/dist/antd.css';
 import MapGL, {Marker, NavigationControl, FullscreenControl, FlyToInterpolator} from 'react-map-gl';
@@ -32,8 +30,9 @@ export default class SliderMap extends Component {
           },
       popupInfo: null,
       collapsed: true,
-      center: 0,
-      addresses: []
+      center: null,
+      addresses: [],
+      places: []
       };
   }
 
@@ -63,8 +62,7 @@ export default class SliderMap extends Component {
 
   //Plots center point calculated from current locations
   plotCenter = (centx, centy) => {
-    if(centx !== undefined) {
-      
+    if(centx !== undefined) {  
       this.setState({
         center:
           <Marker
@@ -79,12 +77,12 @@ export default class SliderMap extends Component {
       });
     }
     else {
-      return null;
+      return;
     }
   }
 
   //Calculates center point
-  _centerPoint = () => {
+  _centerPoint = async () => {
     var x = 0;
         var y = 0;
         var z = 0;
@@ -104,7 +102,18 @@ export default class SliderMap extends Component {
         var xx = (x/z);
         var yy = (y/z);
         this.plotCenter(xx, yy);
-        getPlaces(xx, yy);
+        this.setState({
+          places: await getPlaces(xx, yy)
+        })
+        
+  }
+
+  _clearMap = () => {
+    this.setState({
+      addresses: [],
+      places: [],
+      center: null
+    })
   }
 
   //Should recieve object of lat/long coordinates and add them to an array of objects
@@ -116,26 +125,13 @@ export default class SliderMap extends Component {
     //if the id is larger than the array that means it has not been added yet,
     //so it can safely be added to rear
     if (addObj.id > (oldArray.length - 1)) {
-      console.log("First if triggered")
       this.setState({
         addresses: oldArray.concat(addObj)
       });
       return;
     }
-    //Old idea
-    /*if (addObj.id === (oldArray.length - 1)) {
-      console.log("second if triggered")
-      let i = addObj.id;
-      let newArray = oldArray.slice(0,(i-1));
-      newArray.concat(addObj);
-      console.log("New Array from second IF is:" + newArray)
-      this.setState({
-        addresses: newArray
-      });
-      return;
-    }*/
+
     else {
-      console.log("else triggered")
       let oldArray = this.state.addresses
       let i = addObj.id
       let bef= i-1
@@ -144,7 +140,6 @@ export default class SliderMap extends Component {
       newArray = newArray.concat(addObj)
       let b = oldArray.slice(aft)
       newArray = newArray.concat(b)
-      console.log("New Array from third IF is:" + newArray)
       this.setState({
         addresses: newArray
       });
@@ -155,6 +150,7 @@ export default class SliderMap extends Component {
   render() {
     const {viewport} = this.state;
     const Center = this.state.center;
+    const Places = this.state.places;
     const MapPoints = this.state.addresses.map((cur, ind) =>
       <Marker
         longitude={cur.lng}
@@ -164,6 +160,17 @@ export default class SliderMap extends Component {
         key={ind}
       >
       <Pin size={20} fill={'#11c888'} />
+      </Marker>
+    );
+    const PlacePoints = this.state.places.map((cur, ind) =>
+      <Marker
+        longitude={cur.venue.location.lng}
+        latitude={cur.venue.location.lat}
+        offsetTop={-20}
+        offsetLeft={-10}
+        key={ind}
+      >
+      <Pin size={20} fill={'#1890ff'} />
       </Marker>
     );
 
@@ -196,14 +203,17 @@ export default class SliderMap extends Component {
                 onViewportChange={this._onViewportChange}
                 mapboxApiAccessToken={TOKEN}
             >
+          {PlacePoints}
           {MapPoints}
           {Center}
           </MapGL>
           <PopCard 
             addLoc={this._addLocationToArray}
             centerPoint={this._centerPoint}
+            clearPoints={this._clearMap}
           />
           <ResultsCard
+            nearPlaces={Places}
           />
         </Layout>
       </Layout>
