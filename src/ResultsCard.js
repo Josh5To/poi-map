@@ -3,19 +3,15 @@ import 'antd/dist/antd.css';
 import { Card, Row, Col } from 'antd';
 import {LeftOutlined, RightOutlined} from '@ant-design/icons'
 import React, {Component} from 'react';
-
-
-const gridStyle = {
-    width: '100%',
-    textAlign: 'center',
-};
+import GridCard from './GridCard.js'
+import Grid from 'antd/lib/card/Grid';
 
 export default class ResultsCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
             slide: {
-                marginLeft: '-15.5vw',
+                marginLeft: '-14.2em',
                 open: false
             }
 
@@ -25,12 +21,12 @@ export default class ResultsCard extends Component {
     toggleSlide = () => {
         if (this.state.slide.open) {
             this.setState({
-                slide: {marginLeft: '-15.5vw', open: false}
+                slide: {marginLeft: '-14.2em', open: false}
             })
         }
         if (!this.state.slide.open) {
             this.setState({
-                slide: {marginLeft: '5.5vw', open: true}
+                slide: {marginLeft: '5.7em', open: true}
             })
         }
     }
@@ -48,18 +44,20 @@ export default class ResultsCard extends Component {
 
     render() {
         const slideStyle = this.state.slide
+        const Results = this.props.nearPlaces.map((cur, ind) =>
+            <GridCard
+                name={cur.venue.name}
+                address={cur.venue.location.address}
+                key={ind}
+            />
+        );
         return (
             <div className="resWrap">
                 <a className="trigger" onClick={this.toggleSlide}><this.resIcon /></a>
                 <div className="resCard" style={slideStyle}>
                     
                     <Card title="Results:">
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
+                        {Results}
                     </Card>
                 </div>
             </div>

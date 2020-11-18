@@ -53,9 +53,14 @@ export default class PopCard extends Component {
         }
     }
 
-    //Handles save button click
+    //Handles clear button click
+    //Needs to first clear "numAddresses"
+    //Second invoke prop function from Slider
     handleClick = () => {
-        this.props.centerPoint();
+        this.setState({
+            numAddress: [0]
+        });
+        this.props.clearPoints();
     }
 
 
@@ -71,7 +76,7 @@ export default class PopCard extends Component {
             <div className="PopCard">
                 <Card title="Points of Interest:" extra={<a href="#">More</a>} style={{ width: 300 }}>
                     {addList}
-                    <Button onClick={this.props.centerPoint}>Save</Button>
+                    <Button onClick={this.props.centerPoint}>Save</Button><Button onClick={this.handleClick}>Clear</Button>
                 </Card>
             </div>
     );

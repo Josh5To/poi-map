@@ -19,14 +19,15 @@ const request = require('request');
         });
 
         if (json.status === "OK" || 200) {
-            console.log(json);
+            console.log(json.response.groups[0].items);
+            res = json.response.groups[0].items;
             return res;
         }
     }
 
     async function urlBuilder(lt, long, q) {
         var query = q
-        let url = `${FourURL}?client_id=${FourID}&client_secret=${FourSecret}&v=20180323&limit=1&ll=${lt},${long}&query=${query}`
+        let url = `${FourURL}?client_id=${FourID}&client_secret=${FourSecret}&v=20180323&limit=5&ll=${lt},${long}&query=${query}`
         return getPlaceData(url);
     }
 
