@@ -35,7 +35,7 @@ export default class AddressField extends PureComponent {
                 <div className="p-grid no-height p-nogutter">
                     <Row type="flex" justify="center" align="top">
                         <Search
-                            placeholder="Location"
+                            placeholder={"Stop #"+ (this.props.id+1)}
                             enterButton="Plot"
                             size="large"
                             onChange={this.handleChange}

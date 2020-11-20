@@ -1,9 +1,9 @@
 /* eslint-disable import/first */
-import React, {Component} from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import { BranchesOutlined, DesktopOutlined, FileOutlined } from '@ant-design/icons'
 import './App.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import React, {Component} from 'react';
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { HomeOutlined, CoffeeOutlined, FileOutlined } from '@ant-design/icons'
 import PopCard from './PopCard.js'
 import ResultsCard from './ResultsCard'
 import getPlaces from './GetPlaces.js'
@@ -180,12 +180,12 @@ export default class SliderMap extends Component {
           <div className="logo" />
           <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1" style={{marginTop: 0}}>
-              <BranchesOutlined />
-              <span>Option 1</span>
+              <HomeOutlined />
+              <span>Hotels</span>
             </Menu.Item>
             <Menu.Item key="2">
-              <DesktopOutlined />
-              <span>Option 2</span>
+              <CoffeeOutlined />
+              <span>Food/Drink</span>
             </Menu.Item>
             <Menu.Item key="3">
               <FileOutlined />
